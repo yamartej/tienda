@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Services\PlaceToPay;
 
 class OrderController extends Controller
 {
@@ -33,6 +34,8 @@ class OrderController extends Controller
      */
     public function create()
     {
+        //$credentials = PlaceToPay::getCredentials();
+        //dd($credentials);
         return view('order.create');    
     }
 
@@ -43,7 +46,6 @@ class OrderController extends Controller
             'customer_name' => $request->input('customer_name'),
             'customer_email' =>$request->input('customer_email'),
             'customer_movile' => $request->input('customer_movile'),
-            'status'=> 'PENDIENTE',
             'product_name' => "Producto XYZ",
             'product_price' => "$150,00"
         ];
@@ -66,10 +68,12 @@ class OrderController extends Controller
         $order->customer_name = $request->input('customer_name');
         $order->customer_email = $request->input('customer_email');
         $order->customer_movile = $request->input('customer_movile');
-        $order->status = 'Payed';
+        $order->status = 'CREATED';
         $order->save();
-        return response()
-            ->view('order.confirm', $data, 200);
+        $response = PlaceToPay::createRequest($request, $order->id);
+        dd($response);
+        /*return response()
+            ->view('order.confirm', $data, 200);*/
         //return response()->json($order->id);
     }
 

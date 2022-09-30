@@ -30,4 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'placetopay' => [
+        'url' => env('URL_PLACE_TO_PAY'),
+        'login' => env('LOGIN_PLACE_TO_PAY'),
+        'secretkey' => env('SECRET_KEY_PLACE_TO_PAY'),
+    ],
+
 ];
