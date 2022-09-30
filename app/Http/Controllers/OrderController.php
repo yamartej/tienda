@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Order;
 
 class OrderController extends Controller
 {
@@ -16,6 +17,15 @@ class OrderController extends Controller
         return view('order.index');
     }
 
+    public function list()
+    {
+        $orders = Order::all();
+        //dd($orders);
+        return view('order.list',["orders"=>$orders]);
+        //return response()->json($orders);
+        //return view('order.index');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -26,6 +36,23 @@ class OrderController extends Controller
         return view('order.create');    
     }
 
+    public function confirm(Request $request)
+    {
+        //$orders = request()->all();
+        $data = [
+            'customer_name' => $request->input('customer_name'),
+            'customer_email' =>$request->input('customer_email'),
+            'customer_movile' => $request->input('customer_movile'),
+            'status'=> 'PENDIENTE',
+            'product_name' => "Producto XYZ",
+            'product_price' => "$150,00"
+        ];
+        return response()
+            ->view('order.confirm', $data, 200);
+        
+    }
+
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -34,12 +61,16 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $orders = request()->all();
-        return response()->json($orders);        
-        //$name = $request->input('name');
-        //return $name;
-        
+        $order = new Order;
+        $data = request()->all();
+        $order->customer_name = $request->input('customer_name');
+        $order->customer_email = $request->input('customer_email');
+        $order->customer_movile = $request->input('customer_movile');
+        $order->status = 'Payed';
+        $order->save();
+        return response()
+            ->view('order.confirm', $data, 200);
+        //return response()->json($order->id);
     }
 
     /**

@@ -22,8 +22,14 @@ Route::get('/', function () {
     Route::post('/orders', 'store');
 });*/
 
-Route::get('order',[OrderController::class,'index']);
+Route::get('/order',[OrderController::class,'index']);
 
-Route::get('order/create',[OrderController::class,'create']);
+Route::get('/order/create',[OrderController::class,'create']);
 
-Route::post('order/create',[OrderController::class,'store']);
+Route::post('/order/confirm',[OrderController::class,'confirm']);
+
+Route::post('/order/store',[OrderController::class,'store']);
+
+Route::get('/order/list',[OrderController::class,'list']);
+
+
