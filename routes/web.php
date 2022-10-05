@@ -15,7 +15,7 @@ use App\Http\Controllers\OrderController;
 */
 
 Route::get('/', function () {
-    return view('home');    
+    return view('home');
 });
 /*Route::controller(OrderController::class)->group(function () {
     Route::get('/orders/{id}', 'show');

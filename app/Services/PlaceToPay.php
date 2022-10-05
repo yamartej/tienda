@@ -22,29 +22,16 @@ class PlaceToPay {
     	self::$secretKey= "024h1IlD";*/
     }
     
-    public static function getCredentials(){
+    public static function auth(){
 
     	self::initialize();
 
-    	$seed= gmdate('c');
+    	$seed= date('c');
 
     	$secretKey= self::$secretKey;
 
-    	if (function_exists('random_bytes')) {
-            $nonce = bin2hex(random_bytes(16));
-        } elseif (function_exists('openssl_random_pseudo_bytes')) {
-            $nonce = bin2hex(openssl_random_pseudo_bytes(16));
-        } else {
-            $nonce = mt_rand();
-        }
+    	$nonce = rand();
 
-    	//$nonce = bin2hex(random_bytes(16));
-
-    	//$tranKey = base64_encode(sha1($nonce . $seed . $secretKey, true));
-
-    	//$nonceBase64 = base64_encode($nonce);
-    	
-    	
     	$credentials = array (
     		'seed' 		=> $seed,
     		'login' 	=> self::$login,
@@ -54,17 +41,15 @@ class PlaceToPay {
     	return $credentials;
     }
 
-    public static function createRequest(Request $request, $referenceId){
+    public static function getRequestInformation(Request $request, $referenceId){
 
-    	self::initialize();
+    	self::auth();
 
     	$endpoint = self::$url.'api/session';
     	$returnURL= url('order/'.$referenceId);
 
-    	$credentials = self::getCredentials();
-		//dd($credentials);
-
-    	$amount = array(
+    	$credentials = self::auth();
+		$amount = array(
 			'currency' => 'COP',
 			'total' => $request->product_price,
 		);
@@ -83,15 +68,10 @@ class PlaceToPay {
 			"returnUrl" => $returnURL,
 			"ipAddress" => '127.0.0.1',
 			"userAgent" => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36',
-
 		);
-
 		$response = Http::post($endpoint, $payload);
-    	
-    	return $response->json();
-
-    	
-
+        return $response->json();
+		
     }
 
 }

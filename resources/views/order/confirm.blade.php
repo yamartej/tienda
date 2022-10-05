@@ -1,71 +1,63 @@
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{ url('/')}}">Tienda XXX</a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="hidden">
-                    <a href="#page-top"></a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-</nav>
-<header id="page-top">
+@extends('layouts.principal')
+@section('info')
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="intro-text">
-                    <hr>
-                </div>
+            <div class="col-lg-12 text-center">
+                <h2>Confirmar Pedido</h2>
+                <hr class="star-primary">
             </div>
         </div>
-    </div>
-</header>
-<div class="content-wrapper">
-    <section class="primary" id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Vista Confirmar Pedido</h2>
-                    <hr class="star-primary">
+        <div class="row">
+            <div class="col-lg-6 shadow-lg p-3 mb-5 bg-body rounded">
+                <div class="text-center">
+                    <picture>
+                        <img src="https://image.shutterstock.com/image-illustration/brown-white-dog-red-hair-260nw-2206110745.jpg" class="img-fluid img-thumbnail" alt="...">
+                    </picture>
                 </div>
             </div>
-            <div class="row">
+            <div class="col-lg-6 shadow-lg p-3 mb-5 bg-body rounded">
+                <div class="text-center">
+                    <h2>Detalles</h2>
+                </div>
+                @isset($status)
+                    @if ($status === 'APPROVED')
+                        <div class="text-center alert alert-success">
+                            <h2>APPROVED</h2>
+                        </div>
+                    @elseif ($status === 'REJECTED')
+                        <div class="text-center alert alert-danger">
+                            <h2>REJECTED</h2>
+                        </div>
+                        @elseif ($status === 'PENDING')
+                        <div class="text-center alert alert-warning">
+                            <h2>PENDING</h2>
+                        </div>
+                    @endif                    
+                @endisset
+                <h3>Producto XYZ</h3>
+                <h1 class="display-5">$150,00</h1>
+                <h6>Detalles del Comprador:</h6>
                 <form action="{{ url('order/store')}}" method="POST">
                     @csrf
                     <div><strong>Nombre: </strong>{{$customer_name}}</div>
                     <input type="hidden" name="customer_name" value="{{$customer_name}}">
                     <div><strong>Correo: </strong>{{$customer_email}}</div>
                     <input type="hidden" name="customer_email" value="{{$customer_email}}">
-                    <div><strong>Telefono: </strong>{{$customer_movile}}</div>
-                    <input type="hidden" name="customer_movile" value="{{$customer_movile}}">
-                    <div><strong>Producto: </strong>{{$product_name}}</div>
+                    <div><strong>Telefono: </strong>{{$customer_mobile}}</div>
+                    <input type="hidden" name="customer_mobile" value="{{$customer_mobile}}">
                     <input type="hidden" name="product_name" value="{{$product_name}}">
-                    <div><strong>Precio: </strong>{{$product_price}}</div>
                     <input type="hidden" name="product_price" value="{{$product_price}}">
-                    <input type="submit" value="Pagar">
+                    <div class="d-grid gap-2">
+                        @if(isset($status))
+                            @if ($status === 'REJECTED')
+                                <button type="submit" class="btn btn-primary" type="button">Reintentar</button>
+                            @endif
+                        @else
+                            <button type="submit" class="btn btn-primary" type="button">Comprar Ahora</button>
+                        @endif
+                    </div>
                 </form>
             </div>
         </div>
-    </section>
-</div>
-
-
-
+    </div>
+@endsection

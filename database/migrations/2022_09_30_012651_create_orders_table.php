@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->string('customer_name', 80);
             $table->string('customer_email', 120);
-            $table->string('customer_movile', 40);
+            $table->string('customer_mobile', 40);
             $table->string('status', 20);
             $table->timestamps();
         });

@@ -41,13 +41,12 @@ class OrderController extends Controller
 
     public function confirm(Request $request)
     {
-        //$orders = request()->all();
         $data = [
             'customer_name' => $request->input('customer_name'),
             'customer_email' =>$request->input('customer_email'),
-            'customer_movile' => $request->input('customer_movile'),
+            'customer_mobile' => $request->input('customer_mobile'),
             'product_name' => "Producto XYZ",
-            'product_price' => "$150,00"
+            'product_price' => "$150,00",
         ];
         return response()
             ->view('order.confirm', $data, 200);
@@ -65,15 +64,16 @@ class OrderController extends Controller
     {
         $order = new Order;
         $data = request()->all();
+        $status = array('status'=>'PENDING');
+        $data = array_merge($data, $status);
         $order->customer_name = $request->input('customer_name');
         $order->customer_email = $request->input('customer_email');
-        $order->customer_movile = $request->input('customer_movile');
-        $order->status = 'CREATED';
+        $order->customer_mobile = $request->input('customer_mobile');
+        $order->status = 'PENDING';
         $order->save();
-        $response = PlaceToPay::createRequest($request, $order->id);
-        dd($response);
-        /*return response()
-            ->view('order.confirm', $data, 200);*/
+        $response = PlaceToPay::getRequestInformation($request, $order->id);
+        return response()
+            ->view('order.confirm', $data, 200);
         //return response()->json($order->id);
     }
 
