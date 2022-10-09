@@ -3,7 +3,7 @@
     <div class="container">
         <div id="titulo_pedido" class="row">
             <div class="col-lg-12 text-center">
-                <h2>Confirmar Pedido</h2>
+                <h2>Pedido</h2>
                 <hr class="star-primary">
             </div>
         </div>
@@ -18,7 +18,7 @@
             </div>
             <div class="col-lg-6 shadow-lg p-3 mb-5 bg-body rounded">
                 <div class="text-center">
-                    <h2>Detalle de Compra</h2>
+                    <h2>Detalle</h2>
                 </div>
                 <hr>
                 @foreach ($orders as $order)
@@ -50,7 +50,7 @@
                         <input type="hidden" name="customer_mobile" value="{{$order->customer_mobile}}">
                         <div><strong>Producto: </strong>{{$order->product_name}}</div>
                         <input type="hidden" name="product_name" value="{{$order->product_name}}">
-                        <div><strong>Precio: </strong>{{$order->product_price}}</div>
+                        <div><strong>Precio: </strong>${{$order->product_price}}</div>
                         <input type="hidden" name="product_price" value="{{$order->product_price}}">
                         @if ($order->status === 'APPROVED')
                             <a class="btn btn-primary" href="{{$url}}">{{$btn}}</a>

@@ -11,19 +11,7 @@ use Illuminate\Support\Facades\Response;
 
 class OrderController extends Controller
 {
-	private static $url;
-    private static $login;
-    private static $secretKey;
-
-    private static function initialize(){
-    	self::$url= config('services.placetopay.url');
-    	self::$login= config('services.placetopay.login');
-    	self::$secretKey= config('services.placetopay.secretkey');
-    	/*self::$url= "https://checkout-co.placetopay.dev/";
-    	self::$login= "6dd490faf9cb87a9862245da41170ff2";
-    	self::$secretKey= "024h1IlD";*/
-    }
-
+	
     /**
      * Display a listing of the resource.
      *
@@ -45,10 +33,18 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('order.create');    
+        
+        $product = [
+            'product' => $request->product,
+            'price' => $request->price,
+            'img' => $request->img
+        ];
+        return response()
+            ->view('order.create', $product, 200);    
     }
+
 
     public function confirm(Request $request)
     {
@@ -56,13 +52,13 @@ class OrderController extends Controller
             'customer_name' => $request->input('customer_name'),
             'customer_email' =>$request->input('customer_email'),
             'customer_mobile' => $request->input('customer_mobile'),
-            'product_name' => "Producto XYZ",
-            'product_price' => "$150,00",
+            'product_name' => $request->input('product'),
+            'product_price' => $request->input('price'),
+            'img' => $request->input('img'),
         ];
 
         return response()
             ->view('order.confirm', $order, 200);
-        
     }
 
     
@@ -75,9 +71,9 @@ class OrderController extends Controller
     public function store(Request $request)
     {
 		$order = new Order;
-		
-
-		/***GUARDAMOS EN LA TABLA DE ORDEN */
+        
+		$img = $request->img;
+        /***GUARDAMOS EN LA TABLA DE ORDEN */
 		$order->customer_name = $request->customer_name;
         $order->customer_email = $request->customer_email;
         $order->customer_mobile = $request->customer_mobile;
@@ -92,34 +88,13 @@ class OrderController extends Controller
         $product->save();
 		return response()
             ->view('order.order-user', [
-				'order'=> $order, 
-				'product'=>$product
+				'order'     =>  $order, 
+				'product'   =>  $product,
+                'img'       =>  $img
 			], 200);
     }
 
     
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      *
@@ -144,17 +119,8 @@ class OrderController extends Controller
         //$request->sw = 1: inidca que es una transacción Pendiente
         else{
             $order = Order::find($request->id);
-            //dd($order);
             return redirect()->away($order->url);
         }
-        
-        
-        /*return response()->json([
-            'status'    => $status,
-			'message'   => $message,
-			'date'    	=> $date
-		]);*/
-        
     }
 
 
@@ -170,7 +136,6 @@ class OrderController extends Controller
         if ($response == 1){
             return redirect()->route('order.index');
         }
-        //return redirect()->route('order/index');
         return redirect()->away('order/index');
     }
 
@@ -179,7 +144,6 @@ class OrderController extends Controller
     {
         $order = Order::find($orderid);
 		$response = PlaceToPay::getInfoTransaction($order->request_id);
-		//dd($response);
 		$status = $response['status']['status'];
 		$message = $response['status']['message'];
 		Order::where('id', $orderid)
@@ -193,8 +157,7 @@ class OrderController extends Controller
 			->where('orders.id', '=', $orderid)
             ->get());
         
-        //dd($order[0]->url);
-		switch($status) {
+        switch($status) {
 			case('APPROVED'):
 
 				$url =  url('/order');
@@ -226,8 +189,5 @@ class OrderController extends Controller
 			'message' => $message,
 			'btn' => $btn
 		]);
-		
-
-    }
-	
+	}
 }

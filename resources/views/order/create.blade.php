@@ -27,6 +27,9 @@
                         <button type="submit" class="btn btn-outline-primary">Enviar</button>
                         <a type="button" href="{{ url('order') }}" class="btn btn-outline-danger">Cancelar</a>    
                     </div>
+                    <input type="hidden" name="price" value="{{$price}}">
+                    <input type="hidden" name="product" value="{{$product}}">
+                    <input type="hidden" name="img" value="{{$img}}">
                 </form>
             </div>
             <div class="col-lg-6 shadow-lg p-3 mb-5 bg-body rounded">
@@ -35,11 +38,11 @@
                 </div>
                 <div class="text-center">
                     <picture>
-                        <img src="https://image.shutterstock.com/image-illustration/brown-white-dog-red-hair-260nw-2206110745.jpg" class="img-fluid img-thumbnail" alt="...">
+                        <img src="{{$img}}" class="img-fluid img-thumbnail" width="350" height="350" alt="...">
                     </picture>
                 </div>
-                <div><strong>Producto: </strong> Producto XYZ</div>
-                <div><strong>Precio: </strong> $150,00</div>
+                <div><strong>Producto: </strong> {{$product}}</div>
+                <div><strong>Precio: </strong> $ {{$price}}</div>
             </div>
         </div>
     </div>

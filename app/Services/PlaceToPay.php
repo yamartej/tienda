@@ -17,9 +17,6 @@ class PlaceToPay {
     	self::$url= config('services.placetopay.url');
     	self::$login= config('services.placetopay.login');
     	self::$secretKey= config('services.placetopay.secretkey');
-    	/*self::$url= "https://checkout-co.placetopay.dev/";
-    	self::$login= "6dd490faf9cb87a9862245da41170ff2";
-    	self::$secretKey= "024h1IlD";*/
     }
     
     public static function auth(){
@@ -48,9 +45,8 @@ class PlaceToPay {
     	$credentials = self::auth();
 
 		$endpoint = self::$url.'api/session';
-		//dd($request->id);
-    	$returnURL= url('order/response/'.$request->id);
-
+		
+		$returnURL= url('order/response/'.$request->id);
     	
 		$amount = array(
 			'currency' => 'COP',
@@ -62,12 +58,11 @@ class PlaceToPay {
 			"description" => $request->product_name,
 			'amount' => [
 				'currency' => 'USD',
-				'total' => 120,
+				'total' => $request->product_price,
 			],
 			"allowPartial" => false,
 		);
-		//dd($payment);
-
+		
 		$price = array(
 			"locale" => "es_CO",
 			"auth" => $credentials,
@@ -77,15 +72,8 @@ class PlaceToPay {
 			"userAgent" => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36',
 			"expiration" => date('c', strtotime('+2 days'))
 		);
-		//$response = json_decode(Http::post($endpoint, $price));
 		$response = Http::post($endpoint, $price);
-		//dd($response->processUrl);
-		//dd($response);
 		return $response->json();
-		/*$response = json_decode(Http::post($endpoint, $price));
-		dd($response->processUrl);
-		return redirect($response->processUrl);
-		return response()->json($credentials);*/
 		
 	}
 

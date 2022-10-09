@@ -7,8 +7,8 @@
                 <hr class="star-primary">
             </div>
         </div>
-        <div class="row w-100">
-            <div class="col-md-3">
+        <div class="row w-100 ">
+            <div class="col-md-4">
                 <div class="card" style="width: 18rem;">
                     <img src="https://totalcleanpanama.com/wp-content/uploads/2021/01/ofc-lapiz-momgol.jpg" class="card-img-top" alt="...">
                     <hr>
@@ -18,7 +18,7 @@
                         <form id="customer_info_form" action="{{ url('order/create')}}" method="POST">
                         @csrf
                             <input type="hidden" name="price" value="20">
-                            <input type="hidden" name="producto" value="Lapiz Mongol # 2">
+                            <input type="hidden" name="product" value="Lapiz Mongol # 2">
                             <input type="hidden" name="img" value="https://totalcleanpanama.com/wp-content/uploads/2021/01/ofc-lapiz-momgol.jpg">
                             <div class="text-center">
                                 <button class="btn btn-primary btn-submit" type="submit">Comprar</button>
@@ -29,33 +29,45 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw-Mc0t4nyhb0mzeHqndlOJoS6YaU3ehIS3w&usqp=CAU" class="card-img-top" alt="...">
+                    <hr>
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Producto #1.</p>
-                        <a href="{{ url('order/create')}}" class="btn btn-primary">Comprar</a>
+                        <p class="fs-1">$ 15,00</p>
+                        <p class="fs-6">Borrador Blanco</p>
+                        <form id="customer_info_form" action="{{ url('order/create')}}" method="POST">
+                        @csrf
+                            <input type="hidden" name="price" value="15">
+                            <input type="hidden" name="product" value="Borrador Blanco">
+                            <input type="hidden" name="img" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw-Mc0t4nyhb0mzeHqndlOJoS6YaU3ehIS3w&usqp=CAU">
+                            <div class="text-center">
+                                <button class="btn btn-primary btn-submit" type="submit">Comprar</button>
+                            </div>
+                            
+                        </form>
+                        
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="https://unionpapelera.com.mx/pub/media/catalog/product/cache/74c1057f7991b4edb2bc7bdaa94de933/1/8/18788_1.jpg" class="card-img-top" alt="...">
+                    <hr>
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Producto #1.</p>
-                        <a href="{{ url('order/create')}}" class="btn btn-primary">Comprar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Producto #1.</p>
-                        <a href="{{ url('order/create')}}" class="btn btn-primary">Comprar</a>
+                        <p class="fs-1">$ 8,50</p>
+                        <p class="fs-6">Sacapuntas Plastico</p>
+                        <form id="customer_info_form" action="{{ url('order/create')}}" method="POST">
+                        @csrf
+                            <input type="hidden" name="price" value="8.50">
+                            <input type="hidden" name="product" value="Sacapuntas Plastico">
+                            <input type="hidden" name="img" value="https://unionpapelera.com.mx/pub/media/catalog/product/cache/74c1057f7991b4edb2bc7bdaa94de933/1/8/18788_1.jpg">
+                            <div class="text-center">
+                                <button class="btn btn-primary btn-submit" type="submit">Comprar</button>
+                            </div>
+                            
+                        </form>
+                        
                     </div>
                 </div>
             </div>
