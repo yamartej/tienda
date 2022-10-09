@@ -1,13 +1,14 @@
 @extends('layouts.principal')
 @section('info')
     <div class="container">
-        <div class="row">
+        <div id="titulo_pedido" class="row">
             <div class="col-lg-12 text-center">
                 <h2>Confirmar Pedido</h2>
                 <hr class="star-primary">
             </div>
         </div>
-        <div class="row">
+        
+        <div id="info" class="row">
             <div class="col-lg-6 shadow-lg p-3 mb-5 bg-body rounded">
                 <div class="text-center">
                     <picture>
@@ -19,45 +20,90 @@
                 <div class="text-center">
                     <h2>Detalles</h2>
                 </div>
-                @isset($status)
-                    @if ($status === 'APPROVED')
-                        <div class="text-center alert alert-success">
-                            <h2>APPROVED</h2>
-                        </div>
-                    @elseif ($status === 'REJECTED')
-                        <div class="text-center alert alert-danger">
-                            <h2>REJECTED</h2>
-                        </div>
-                        @elseif ($status === 'PENDING')
-                        <div class="text-center alert alert-warning">
-                            <h2>PENDING</h2>
-                        </div>
-                    @endif                    
-                @endisset
                 <h3>Producto XYZ</h3>
                 <h1 class="display-5">$150,00</h1>
                 <h6>Detalles del Comprador:</h6>
-                <form action="{{ url('order/store')}}" method="POST">
+                <form id="customer_info_form" action="{{ url('order/store')}}" method="POST">
                     @csrf
                     <div><strong>Nombre: </strong>{{$customer_name}}</div>
-                    <input type="hidden" name="customer_name" value="{{$customer_name}}">
+                    <input type="hidden" id="customer_name" name="customer_name" value="{{$customer_name}}">
                     <div><strong>Correo: </strong>{{$customer_email}}</div>
-                    <input type="hidden" name="customer_email" value="{{$customer_email}}">
+                    <input type="hidden" id="customer_email" name="customer_email" value="{{$customer_email}}">
                     <div><strong>Telefono: </strong>{{$customer_mobile}}</div>
-                    <input type="hidden" name="customer_mobile" value="{{$customer_mobile}}">
-                    <input type="hidden" name="product_name" value="{{$product_name}}">
-                    <input type="hidden" name="product_price" value="{{$product_price}}">
-                    <div class="d-grid gap-2">
-                        @if(isset($status))
-                            @if ($status === 'REJECTED')
-                                <button type="submit" class="btn btn-primary" type="button">Reintentar</button>
-                            @endif
-                        @else
-                            <button type="submit" class="btn btn-primary" type="button">Comprar Ahora</button>
-                        @endif
-                    </div>
+                    <input type="hidden" id="customer_mobile" name="customer_mobile" value="{{$customer_mobile}}">
+                    <input type="hidden" id="product_name" name="product_name" value="{{$product_name}}">
+                    <input type="hidden" id="product_price" name="product_price" value="{{$product_price}}">
+                    <button class="btn btn-primary btn-submit" type="submit">Comprar Ahora</button>
                 </form>
             </div>
         </div>
+        <div id="info_order" class="row">
+                
+        </div>
     </div>
+@endsection
+@section('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            reset_message();
+            $('#table_order').hide();
+            $('#titulo_orden_usuario').hide();
+            
+            $("#pay" ).click(function() {
+                reset_message()
+                console.log("pay:");
+                var url = window.location.origin + "/order/update";
+                console.log("base_url" + url);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: {
+                        id: 11,
+                    },
+                    dataType: "json",
+                    success: function(res) {
+                        $( ".mensaje" ).html( 'Orden ' + res.status);
+                        if(res.status == 'PENDING') {
+                            class_message = 'alert-warning';
+                            $( ".mensaje" ).show().addClass(class_message).fadeOut(1500);
+                        }
+                        else if(res.status == 'APPROVED'){
+                            class_message = 'alert-success'; 
+                            $( ".mensaje" ).show().addClass(class_message).fadeOut(1500);
+                        } 
+                        else if(res.status == 'REJECTED'){
+                            class_message = 'alert-danger'; 
+                            $( ".mensaje" ).show().addClass(class_message).fadeOut(1500);
+                        }
+                        //$( "#message" ).removeClass(class_message);
+                    },
+                    error: function(result) {
+                        class_message = 'alert-danger'; 
+                        $( ".mensaje" ).html( 'Algo salio Mal!!');
+                        $( ".mensaje" ).show().addClass(class_message).fadeOut(1500);
+                    },
+                    complete: function(){
+                        
+                    }
+                });
+            });
+            $("#remove" ).click(function() {
+                console.log("Remove");
+                
+            });
+
+            
+        });
+        function reset_message(){
+            $( '#message' ).removeClass('alert-danger');   
+            $( '#message' ).removeClass('alert-success');   
+            $( '#message' ).removeClass('alert-warning');   
+            
+        }
+    </script>
 @endsection

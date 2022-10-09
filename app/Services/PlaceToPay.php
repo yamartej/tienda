@@ -31,47 +31,80 @@ class PlaceToPay {
     	$secretKey= self::$secretKey;
 
     	$nonce = rand();
-
+		
     	$credentials = array (
-    		'seed' 		=> $seed,
     		'login' 	=> self::$login,
-    		'tranKey' 	=> base64_encode(sha1($nonce . $seed . env('SECRET_KEY_PLACE_TO_PAY'), true)),
-    		'nonce' 	=> base64_encode($nonce),
+			'tranKey' 	=> base64_encode(sha1( $nonce.$seed.$secretKey , true)),
+			'nonce' 	=> base64_encode($nonce),
+			'seed' 		=> $seed
     	);
     	return $credentials;
     }
 
-    public static function getRequestInformation(Request $request, $referenceId){
-
-    	self::auth();
-
-    	$endpoint = self::$url.'api/session';
-    	$returnURL= url('order/'.$referenceId);
+    public static function getRequestInformation(Request $request){
+		
+		self::auth();
 
     	$credentials = self::auth();
+
+		$endpoint = self::$url.'api/session';
+		//dd($request->id);
+    	$returnURL= url('order/response/'.$request->id);
+
+    	
 		$amount = array(
 			'currency' => 'COP',
 			'total' => $request->product_price,
 		);
 
 		$payment = array(
-			"reference" => $referenceId,
+			"reference" => $request->id,
 			"description" => $request->product_name,
-			"amount" => $amount,
+			'amount' => [
+				'currency' => 'USD',
+				'total' => 120,
+			],
 			"allowPartial" => false,
 		);
+		//dd($payment);
 
-		$payload = array(
+		$price = array(
 			"locale" => "es_CO",
 			"auth" => $credentials,
 			"payment" => $payment,
 			"returnUrl" => $returnURL,
 			"ipAddress" => '127.0.0.1',
 			"userAgent" => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36',
+			"expiration" => date('c', strtotime('+2 days'))
 		);
-		$response = Http::post($endpoint, $payload);
-        return $response->json();
+		//$response = json_decode(Http::post($endpoint, $price));
+		$response = Http::post($endpoint, $price);
+		//dd($response->processUrl);
+		//dd($response);
+		return $response->json();
+		/*$response = json_decode(Http::post($endpoint, $price));
+		dd($response->processUrl);
+		return redirect($response->processUrl);
+		return response()->json($credentials);*/
 		
-    }
+	}
+
+	public static function getInfoTransaction($id)
+	{
+		
+		self::auth();
+
+    	$credentials = self::auth();
+
+		$endpoint = self::$url.'api/session/'.$id;
+		
+    	$response = Http::post($endpoint, [
+			'auth' => $credentials
+		]);
+		
+		return $response->json();
+		
+		
+	}
 
 }

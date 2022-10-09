@@ -30,6 +30,14 @@ Route::post('/order/confirm',[OrderController::class,'confirm']);
 
 Route::post('/order/store',[OrderController::class,'store']);
 
+Route::post('/order/order-user',[OrderController::class,'order-user']);
+
+Route::post('/order/update',[OrderController::class,'update']);
+
+Route::get('/order/response/{id}', [OrderController::class,'response']);
+
 Route::get('/order/list',[OrderController::class,'list']);
+
+
 
 

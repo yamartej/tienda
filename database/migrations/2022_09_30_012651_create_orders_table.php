@@ -19,6 +19,8 @@ class CreateOrdersTable extends Migration
             $table->string('customer_email', 120);
             $table->string('customer_mobile', 40);
             $table->string('status', 20);
+            $table->string('request_id', 20)->nullable();
+            $table->string('url', 300)->nullable();
             $table->timestamps();
         });
     }
