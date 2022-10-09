@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('product_name', 80);
             $table->string('product_price', 80);
+            $table->string('img_url', 200);
             $table->unsignedBigInteger('order_id')->unique();
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->timestamps();

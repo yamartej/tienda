@@ -84,6 +84,7 @@ class OrderController extends Controller
 		$product = new Product;
 		$product->product_name = $request->product_name;
         $product->product_price = $request->product_price;
+        $product->img_url = $request->img;
         $product->order_id = $order->id;
         $product->save();
 		return response()
@@ -153,7 +154,7 @@ class OrderController extends Controller
 		
 		$order = json_decode(DB::table('orders')
             ->join('products', 'orders.id', '=', 'products.order_id')
-            ->select('orders.*', 'products.product_name', 'products.product_price')
+            ->select('orders.*', 'products.product_name', 'products.product_price', 'products.img_url')
 			->where('orders.id', '=', $orderid)
             ->get());
         

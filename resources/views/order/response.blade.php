@@ -1,27 +1,20 @@
 @extends('layouts.principal')
 @section('info')
     <div class="container">
-        <div id="titulo_pedido" class="row">
-            <div class="col-lg-12 text-center">
-                <h2>Pedido</h2>
-                <hr class="star-primary">
-            </div>
-        </div>
-        
         <div id="info" class="row">
-            <div class="col-lg-6 shadow-lg p-3 mb-5 bg-body rounded">
-                <div class="text-center">
-                    <picture>
-                        <img src="https://image.shutterstock.com/image-illustration/brown-white-dog-red-hair-260nw-2206110745.jpg" class="img-fluid img-thumbnail" alt="...">
-                    </picture>
+            @foreach ($orders as $order)
+                <div class="col-lg-6 shadow-lg p-3 mb-5 bg-body rounded">
+                    <div class="text-center">
+                        <picture>
+                            <img src="{{$order->img_url}}" class="img-fluid img-thumbnail" alt="..." width="350" height="350">
+                        </picture>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-6 shadow-lg p-3 mb-5 bg-body rounded">
-                <div class="text-center">
-                    <h2>Detalle</h2>
-                </div>
-                <hr>
-                @foreach ($orders as $order)
+                <div class="col-lg-6 shadow-lg p-3 mb-5 bg-body rounded">
+                    <div class="text-center">
+                        <h2>Detalle</h2>
+                    </div>
+                    <hr>
                     <div>
                         <h3>Estatus de la compra:</h3>
                         @if ($order->status === 'APPROVED')
@@ -63,8 +56,8 @@
                             <input type="hidden" name="sw" value="0">
                         @endif
                     </form>
-                @endforeach
-            </div>
+                </div>
+            @endforeach
         </div>
     </div>
 @endsection
