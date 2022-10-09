@@ -7,7 +7,6 @@
                 <hr class="star-primary">
             </div>
         </div>
-        
         <div id="info" class="row">
             <div class="col-lg-6 shadow-lg p-3 mb-5 bg-body rounded">
                 <div class="text-center">
@@ -41,69 +40,4 @@
                 
         </div>
     </div>
-@endsection
-@section('scripts')
-    <script type="text/javascript">
-        $(document).ready(function() {
-            reset_message();
-            $('#table_order').hide();
-            $('#titulo_orden_usuario').hide();
-            
-            $("#pay" ).click(function() {
-                reset_message()
-                console.log("pay:");
-                var url = window.location.origin + "/order/update";
-                console.log("base_url" + url);
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    url: url,
-                    type: 'POST',
-                    data: {
-                        id: 11,
-                    },
-                    dataType: "json",
-                    success: function(res) {
-                        $( ".mensaje" ).html( 'Orden ' + res.status);
-                        if(res.status == 'PENDING') {
-                            class_message = 'alert-warning';
-                            $( ".mensaje" ).show().addClass(class_message).fadeOut(1500);
-                        }
-                        else if(res.status == 'APPROVED'){
-                            class_message = 'alert-success'; 
-                            $( ".mensaje" ).show().addClass(class_message).fadeOut(1500);
-                        } 
-                        else if(res.status == 'REJECTED'){
-                            class_message = 'alert-danger'; 
-                            $( ".mensaje" ).show().addClass(class_message).fadeOut(1500);
-                        }
-                        //$( "#message" ).removeClass(class_message);
-                    },
-                    error: function(result) {
-                        class_message = 'alert-danger'; 
-                        $( ".mensaje" ).html( 'Algo salio Mal!!');
-                        $( ".mensaje" ).show().addClass(class_message).fadeOut(1500);
-                    },
-                    complete: function(){
-                        
-                    }
-                });
-            });
-            $("#remove" ).click(function() {
-                console.log("Remove");
-                
-            });
-
-            
-        });
-        function reset_message(){
-            $( '#message' ).removeClass('alert-danger');   
-            $( '#message' ).removeClass('alert-success');   
-            $( '#message' ).removeClass('alert-warning');   
-            
-        }
-    </script>
 @endsection

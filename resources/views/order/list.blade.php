@@ -35,6 +35,7 @@
                         @endif
                         
                         <td>{{ $order->created_at }} </td>    
+                        <td><a href="#">Delete</a></td>
                     </tr>
                 @endforeach
             </tbody>

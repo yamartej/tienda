@@ -37,8 +37,6 @@
                                 <strong>{{$message}}</strong>
                             </div>
                         @endif
-                        
-                        
                     </div>
                     <hr>
                     <form id="customer_info_form" action="{{$url}}" method="POST">
@@ -58,14 +56,15 @@
                             <a class="btn btn-primary" href="{{$url}}">{{$btn}}</a>
                         @elseif ($order->status === 'REJECTED')
                             <button class="btn btn-primary btn-submit" type="submit">{{$btn}}</button>
-                            <a class="btn btn-primary" href="{{ url('order')}}">Finalizar</a>
+                        @elseif ($order->status === 'PENDING')
+                            <button class="btn btn-primary btn-submit" type="submit">{{$btn}}</button>
+                            <input type="hidden" name="sw" value="1">
+                        @else
+                            <input type="hidden" name="sw" value="0">
                         @endif
                     </form>
                 @endforeach
             </div>
-        </div>
-        <div id="info_order" class="row">
-                
         </div>
     </div>
 @endsection

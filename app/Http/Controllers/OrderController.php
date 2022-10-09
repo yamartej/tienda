@@ -129,23 +129,31 @@ class OrderController extends Controller
      */
     public function update(Request $request)
     {
-        $response = PlaceToPay::getRequestInformation($request);
-		//dd($response);
-		if($response['status']['status']== "OK"){
-			//dd($request->id);
-			Order::where('id', $request->id)
-			->update([
-				'request_id' => $response["requestId"],
-				'url' => $response["processUrl"]
-			]);
-			return redirect()->away($response["processUrl"]);
-		}
+        //$request->sw = 0: inidca que no es una transacción Pendiente
+        if($request->sw == 0){
+            $response = PlaceToPay::getRequestInformation($request);
+            if($response['status']['status']== "OK"){
+                Order::where('id', $request->id)
+                ->update([
+                    'request_id' => $response["requestId"],
+                    'url' => $response["processUrl"]
+                ]);
+                return redirect()->away($response["processUrl"]);
+            }
+        }
+        //$request->sw = 1: inidca que es una transacción Pendiente
+        else{
+            $order = Order::find($request->id);
+            //dd($order);
+            return redirect()->away($order->url);
+        }
         
-        return response()->json([
+        
+        /*return response()->json([
             'status'    => $status,
 			'message'   => $message,
 			'date'    	=> $date
-		]);
+		]);*/
         
     }
 
@@ -156,9 +164,14 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $response = DB::table('orders')->where('id', '=', $request->id)->delete();
+        if ($response == 1){
+            return redirect()->route('order.index');
+        }
+        //return redirect()->route('order/index');
+        return redirect()->away('order/index');
     }
 
 	
@@ -166,7 +179,7 @@ class OrderController extends Controller
     {
         $order = Order::find($orderid);
 		$response = PlaceToPay::getInfoTransaction($order->request_id);
-		dd($response);
+		//dd($response);
 		$status = $response['status']['status'];
 		$message = $response['status']['message'];
 		Order::where('id', $orderid)
@@ -174,11 +187,13 @@ class OrderController extends Controller
 				'status' => $status]);
 
 		
-		$order = DB::table('orders')
+		$order = json_decode(DB::table('orders')
             ->join('products', 'orders.id', '=', 'products.order_id')
             ->select('orders.*', 'products.product_name', 'products.product_price')
 			->where('orders.id', '=', $orderid)
-            ->get();
+            ->get());
+        
+        //dd($order[0]->url);
 		switch($status) {
 			case('APPROVED'):
 
@@ -190,9 +205,10 @@ class OrderController extends Controller
 		 
 			case('PENDING'):
 
-				$url =  url('/order');
+				$url =  url('order/update');
 				$message = $message;
-				$btn = 'Finalizar';
+				$btn = 'Continuar Pago';
+                $url_api = $order[0]->url;
 			
 				break;
 		 
