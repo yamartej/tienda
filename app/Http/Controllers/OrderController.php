@@ -25,7 +25,8 @@ class OrderController extends Controller
     public function list()
     {
         $orders = Order::all();
-		return view('order.list', ["orders" => $orders] );
+		//return view('order.list', ["orders" => $orders] );
+        return response()->json($orders);
     }
 
     /**

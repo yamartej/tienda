@@ -10,31 +10,29 @@
     <title>La Tiendita</title>
   </head>
   <body>
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #dc3545;">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url('/')}}"><strong>La Tiendita</strong> </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ url('/')}}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('order')}}">Tienda</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('order/list')}}">Lista de Ordenes</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
     <div id="app">
-        @yield("info")
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #dc3545;">
+            
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="{{ url('/')}}"><strong>La Tiendita</strong> </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <router-link to="/order" class="nav-link" exact>Tienda </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link to="/order/list" class="nav-link" exact>Lista de Ordenes </router-link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <router-view></router-view>
     </div>
     <script src="{{ asset('js/app.js')}}"></script>
 </body>
