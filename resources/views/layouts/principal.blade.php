@@ -32,7 +32,9 @@
                 </div>
             </nav>
         </div>
-        <router-view></router-view>
+        <router-view>
+        
+        </router-view>
     </div>
     <script src="{{ asset('js/app.js')}}"></script>
 </body>

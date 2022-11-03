@@ -15,17 +15,14 @@
                     <div class="card-body">
                         <p class="fs-1">$ 20,00</p>
                         <p class="fs-6">Lapiz Mongol # 2</p>
-                        <form id="customer_info_form" method="POST">
-                        @csrf
-                            <input type="hidden" name="price" value="20">
-                            <input type="hidden" name="product" value="Lapiz Mongol # 2">
-                            <input type="hidden" name="img" value="https://totalcleanpanama.com/wp-content/uploads/2021/01/ofc-lapiz-momgol.jpg">
+                        <form id="customer_info_form" method="POST" v-on:click=sendProduct()>
+                            <input type="hidden" v-model ="price" name="price" value="20">
+                            <input type="hidden" v-model ="product" name="product" value="Lapiz Mongol # 2">
+                            <input type="hidden" v-model ="img" name="img" value="https://totalcleanpanama.com/wp-content/uploads/2021/01/ofc-lapiz-momgol.jpg">
                             <div class="text-center">
-                                <button class="btn btn-primary btn-submit" type="submit">Comprar</button>
+                                <button type="submit" value="Send" class="btn btn-primary btn-submit" >Comprar</button>
                             </div>
-                            
                         </form>
-                        
                     </div>
                 </div>
             </div>
@@ -37,14 +34,12 @@
                         <p class="fs-1">$ 15,00</p>
                         <p class="fs-6">Borrador Blanco</p>
                         <form id="customer_info_form" method="POST">
-                        @csrf
                             <input type="hidden" name="price" value="15">
                             <input type="hidden" name="product" value="Borrador Blanco">
                             <input type="hidden" name="img" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw-Mc0t4nyhb0mzeHqndlOJoS6YaU3ehIS3w&usqp=CAU">
                             <div class="text-center">
                                 <button class="btn btn-primary btn-submit" type="submit">Comprar</button>
                             </div>
-                            
                         </form>
                         
                     </div>
@@ -58,27 +53,17 @@
                         <p class="fs-1">$ 8,50</p>
                         <p class="fs-6">Sacapuntas Plastico</p>
                         <form id="customer_info_form" method="POST">
-                        @csrf
                             <input type="hidden" name="price" value="8.50">
                             <input type="hidden" name="product" value="Sacapuntas Plastico">
                             <input type="hidden" name="img" value="https://unionpapelera.com.mx/pub/media/catalog/product/cache/74c1057f7991b4edb2bc7bdaa94de933/1/8/18788_1.jpg">
                             <div class="text-center">
                                 <button class="btn btn-primary btn-submit" type="submit">Comprar</button>
                             </div>
-                            
                         </form>
-                        
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </template>
-
-<script>
-    export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
-    }
-</script>

@@ -5,6 +5,10 @@ import Vue from 'vue';
 
 import VueRouter from 'vue-router';
 
+import { Form, HasError, AlertError } from 'vform'
+
+window.Form = Form;
+
 Vue.use(VueRouter);
 
 import Shop from  './components/orders/Shop.vue';
