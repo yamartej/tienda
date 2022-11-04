@@ -5375,6 +5375,60 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/orders/Shop.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/orders/Shop.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      products: [{
+        price: '20',
+        description: 'Lapiz Mongol # 2',
+        img: 'https://totalcleanpanama.com/wp-content/uploads/2021/01/ofc-lapiz-momgol.jpg'
+      }]
+    };
+  },
+  methods: {
+    shop: function shop() {
+      //ENVIAR A CREATE
+      //alert("Shop");
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -28182,15 +28236,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Shop_vue_vue_type_template_id_17df8705___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Shop.vue?vue&type=template&id=17df8705& */ "./resources/js/components/orders/Shop.vue?vue&type=template&id=17df8705&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Shop_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Shop.vue?vue&type=script&lang=js& */ "./resources/js/components/orders/Shop.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 ;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Shop_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _Shop_vue_vue_type_template_id_17df8705___WEBPACK_IMPORTED_MODULE_0__.render,
   _Shop_vue_vue_type_template_id_17df8705___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
@@ -28220,6 +28276,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./List.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/orders/List.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_List_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/orders/Shop.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/orders/Shop.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Shop_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Shop.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/orders/Shop.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Shop_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -28374,8 +28446,6 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _vm._m(0),
-    _vm._v(" "),
     _c("div", { staticClass: "row w-100" }, [
       _c("div", { staticClass: "col-md-4" }, [
         _c("div", { staticClass: "card", staticStyle: { width: "18rem" } }, [
@@ -28389,39 +28459,64 @@ var render = function () {
           _vm._v(" "),
           _c("hr"),
           _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c("p", { staticClass: "fs-1" }, [_vm._v("$ 20,00")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "fs-6" }, [_vm._v("Lapiz Mongol # 2")]),
-            _vm._v(" "),
-            _c(
-              "form",
-              {
-                attrs: { id: "customer_info_form", method: "POST" },
-                on: {
-                  click: function ($event) {
-                    return _vm.sendProduct()
-                  },
+          _c(
+            "form",
+            {
+              on: {
+                submit: function ($event) {
+                  $event.preventDefault()
+                  return _vm.shop()
                 },
               },
-              [
+            },
+            _vm._l(_vm.products, function (product) {
+              return _c("div", { staticClass: "card-body" }, [
+                _c("p", { staticClass: "fs-1" }, [
+                  _vm._v(_vm._s(product.price)),
+                ]),
+                _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.price,
-                      expression: "price",
+                      value: product.price,
+                      expression: "product.price",
                     },
                   ],
-                  attrs: { type: "hidden", name: "price", value: "20" },
-                  domProps: { value: _vm.price },
+                  attrs: { type: "hidden", name: "price" },
+                  domProps: { value: product.price },
                   on: {
                     input: function ($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.price = $event.target.value
+                      _vm.$set(product, "price", $event.target.value)
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("p", { staticClass: "fs-6" }, [
+                  _vm._v(_vm._s(product.description)),
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: product.description,
+                      expression: "product.description",
+                    },
+                  ],
+                  attrs: { type: "hidden" },
+                  domProps: { value: product.description },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(product, "description", $event.target.value)
                     },
                   },
                 }),
@@ -28431,210 +28526,36 @@ var render = function () {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.product,
-                      expression: "product",
+                      value: product.img,
+                      expression: "product.img",
                     },
                   ],
-                  attrs: {
-                    type: "hidden",
-                    name: "product",
-                    value: "Lapiz Mongol # 2",
-                  },
-                  domProps: { value: _vm.product },
+                  attrs: { type: "hidden" },
+                  domProps: { value: product.img },
                   on: {
                     input: function ($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.product = $event.target.value
+                      _vm.$set(product, "img", $event.target.value)
                     },
                   },
                 }),
                 _vm._v(" "),
                 _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.img,
-                      expression: "img",
-                    },
-                  ],
-                  attrs: {
-                    type: "hidden",
-                    name: "img",
-                    value:
-                      "https://totalcleanpanama.com/wp-content/uploads/2021/01/ofc-lapiz-momgol.jpg",
-                  },
-                  domProps: { value: _vm.img },
-                  on: {
-                    input: function ($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.img = $event.target.value
-                    },
-                  },
+                  staticClass: "btn btn-primary btn-submit",
+                  attrs: { type: "submit", value: "Send" },
                 }),
-                _vm._v(" "),
-                _vm._m(1),
-              ]
-            ),
-          ]),
+              ])
+            }),
+            0
+          ),
         ]),
       ]),
-      _vm._v(" "),
-      _vm._m(2),
-      _vm._v(" "),
-      _vm._m(3),
     ]),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-lg-12 text-center" }, [
-        _c("h2", [_vm._v("Productos")]),
-        _vm._v(" "),
-        _c("hr", { staticClass: "star-primary" }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-center" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary btn-submit",
-          attrs: { type: "submit", value: "Send" },
-        },
-        [_vm._v("Comprar")]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4" }, [
-      _c("div", { staticClass: "card", staticStyle: { width: "18rem" } }, [
-        _c("img", {
-          staticClass: "card-img-top",
-          attrs: {
-            src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw-Mc0t4nyhb0mzeHqndlOJoS6YaU3ehIS3w&usqp=CAU",
-            alt: "...",
-          },
-        }),
-        _vm._v(" "),
-        _c("hr"),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c("p", { staticClass: "fs-1" }, [_vm._v("$ 15,00")]),
-          _vm._v(" "),
-          _c("p", { staticClass: "fs-6" }, [_vm._v("Borrador Blanco")]),
-          _vm._v(" "),
-          _c("form", { attrs: { id: "customer_info_form", method: "POST" } }, [
-            _c("input", {
-              attrs: { type: "hidden", name: "price", value: "15" },
-            }),
-            _vm._v(" "),
-            _c("input", {
-              attrs: {
-                type: "hidden",
-                name: "product",
-                value: "Borrador Blanco",
-              },
-            }),
-            _vm._v(" "),
-            _c("input", {
-              attrs: {
-                type: "hidden",
-                name: "img",
-                value:
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw-Mc0t4nyhb0mzeHqndlOJoS6YaU3ehIS3w&usqp=CAU",
-              },
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "text-center" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary btn-submit",
-                  attrs: { type: "submit" },
-                },
-                [_vm._v("Comprar")]
-              ),
-            ]),
-          ]),
-        ]),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4" }, [
-      _c("div", { staticClass: "card", staticStyle: { width: "18rem" } }, [
-        _c("img", {
-          staticClass: "card-img-top",
-          attrs: {
-            src: "https://unionpapelera.com.mx/pub/media/catalog/product/cache/74c1057f7991b4edb2bc7bdaa94de933/1/8/18788_1.jpg",
-            alt: "...",
-          },
-        }),
-        _vm._v(" "),
-        _c("hr"),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c("p", { staticClass: "fs-1" }, [_vm._v("$ 8,50")]),
-          _vm._v(" "),
-          _c("p", { staticClass: "fs-6" }, [_vm._v("Sacapuntas Plastico")]),
-          _vm._v(" "),
-          _c("form", { attrs: { id: "customer_info_form", method: "POST" } }, [
-            _c("input", {
-              attrs: { type: "hidden", name: "price", value: "8.50" },
-            }),
-            _vm._v(" "),
-            _c("input", {
-              attrs: {
-                type: "hidden",
-                name: "product",
-                value: "Sacapuntas Plastico",
-              },
-            }),
-            _vm._v(" "),
-            _c("input", {
-              attrs: {
-                type: "hidden",
-                name: "img",
-                value:
-                  "https://unionpapelera.com.mx/pub/media/catalog/product/cache/74c1057f7991b4edb2bc7bdaa94de933/1/8/18788_1.jpg",
-              },
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "text-center" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary btn-submit",
-                  attrs: { type: "submit" },
-                },
-                [_vm._v("Comprar")]
-              ),
-            ]),
-          ]),
-        ]),
-      ]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
